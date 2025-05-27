@@ -1,0 +1,136 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  body {
+    background: linear-gradient(135deg, #6a11cb, #2575fc);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    color: #333;
+    align-items: flex-start;
+  }
+  
+  .container {
+    background: #fff;
+    width: 380px;
+    padding: 30px 40px;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+    height: 420px; /* fixar altura para evitar "pulos" */
+  }
+  
+  .box {
+    opacity: 0;
+    position: absolute;
+    top: 30px;
+    left: 40px;
+    right: 40px;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    transform: translateX(100%);
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .box.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: auto;
+    position: relative;
+  }
+  
+  h2 {
+    color: #6a11cb;
+    margin-bottom: 10px;
+    font-weight: 700;
+    font-size: 1.8rem;
+  }
+  
+  p {
+    margin-bottom: 20px;
+    font-size: 0.9rem;
+    color: #555;
+  }
+  
+  .input-group {
+    position: relative;
+    margin-bottom: 18px;
+  }
+  
+  .input-group i {
+    position: absolute;
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #6a11cb;
+    font-size: 1.1rem;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 12px 12px 12px 38px;
+    border: 1.8px solid #ddd;
+    border-radius: 25px;
+    outline: none;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+  }
+  
+  .input-group input:focus {
+    border-color: #6a11cb;
+  }
+  
+  a {
+    font-size: 0.85rem;
+    color: #6a11cb;
+    text-decoration: none;
+    margin-bottom: 20px;
+    display: inline-block;
+    cursor: pointer;
+    transition: color 0.3s;
+  }
+  
+  a:hover {
+    color: #2575fc;
+  }
+  
+  button {
+    background-color: #6a11cb;
+    color: white;
+    border: none;
+    padding: 12px;
+    width: 100%;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  button:hover {
+    background-color: #2575fc;
+  }
+  
+  .box p button {
+    background: transparent;
+    border: none;
+    color: #6a11cb;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.9rem;
+    padding: 0;
+    margin-left: 5px;
+    transition: color 0.3s;
+  }
+  
+  .box p button:hover {
+    color: #2575fc;
+  }
+  
