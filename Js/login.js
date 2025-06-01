@@ -24,9 +24,10 @@ document.getElementById('form-login').addEventListener('submit', async (e) => {
       body: JSON.stringify({ email, senha }),
     });
 
-    const data = await response.json();
+    const responseText = await response.text();
 
     if (response.ok) {
+      const data = JSON.parse(responseText);
       localStorage.setItem('authToken', data.token);
       localStorage.setItem('userEmail', email);
 
@@ -35,7 +36,12 @@ document.getElementById('form-login').addEventListener('submit', async (e) => {
 
       window.location.href = `welcome.html?token=${data.token}`;
     } else {
-      alert(data.message || 'Erro no login.');
+      // tratamento de erro
+      if (responseText.includes("Usuário ou senha incorretos")) {
+        alert("Usuário ou senha incorretos");
+      } else {
+        alert(responseText || 'Erro ao tentar realizar login.');
+      }
     }
   } catch (error) {
     alert('Erro na comunicação com a API.');
@@ -61,28 +67,36 @@ document.getElementById('form-registro').addEventListener('submit', async (e) =>
       body: JSON.stringify({ email, senha, senhaConfirmada: confirmarSenha }),
     });
 
+    const responseText = await response.text();
+
     if (response.ok) {
-      const text = await response.text();
-      if (!text) {
-        alert('Cadastro bem-sucedido! Redirecionando...');
-        window.location.href = 'welcome.html';
-        return;
+      try {
+        const data = JSON.parse(responseText);
+        alert(data.message || 'Cadastro realizado com sucesso!');
+      } catch {
+        alert('Cadastro bem-sucedido!');
       }
 
-      try {
-        const data = JSON.parse(text);
-        alert(data.message || 'Cadastro realizado com sucesso!');
-        window.location.href = 'welcome.html';
-      } catch {
-        alert('Cadastro bem-sucedido! Redirecionando...');
-        window.location.href = 'welcome.html';
-      }
+      window.location.href = 'welcome.html';
     } else {
-      const errorText = await response.text();
-      alert(errorText || 'Erro no cadastro.');
-    }
+      try {
+        const errorData = JSON.parse(responseText);
+        if (response.status === 400 && errorData.errors?.Email?.length) {
+          alert(errorData.errors.Email[0]);
+        } else {
+          alert(errorData.title || 'Erro no cadastro.');
+        }
+      } catch {
+        if (responseText.includes("is already taken")) {
+          alert("Este e-mail já está cadastrado.");
+        } else {
+          alert(responseText || 'Erro no cadastro.');
+        }
+      } 
+    } 
   } catch (error) {
     console.error('Erro na requisição:', error);
     alert('Erro na comunicação com a API.');
   }
 });
+
