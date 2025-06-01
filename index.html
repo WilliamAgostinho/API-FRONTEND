@@ -4,67 +4,63 @@
   <meta charset="UTF-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login e Cadastro</title>
+  <title>Autenticação</title>
   <link rel="stylesheet" href="Css/styles.css" />
   <script src="https://kit.fontawesome.com/2ca71d1b50.js" crossorigin="anonymous"></script>
+  <script src="Js/login.js" defer></script>
 </head>
 <body>
-  <div class="container">
-    <div class="box login-box active">
-      <h2>Bem-vindo de volta!</h2>
-      <p>Use seu e-mail e senha para entrar</p>
-      <form>
-        <div class="input-group">
+  <div class="caixa">
+    <div class="painel painel-login visivel">
+      <h2>Acesse sua conta!</h2>
+      <form id="form-login">
+        <div class="campo">
           <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="E-mail" required />
+          <input type="text" name="email" placeholder="E-mail" required />
         </div>
-        <div class="input-group">
+        <div class="campo">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Senha" required />
+          <input type="password" name="senha" placeholder="Senha" required />
         </div>
-        <a href="#">Esqueceu a senha?</a>
-        <button type="submit">Entrar</button>
+        <a href="#">Esqueceu sua senha?</a>
+        <button type="submit">Acessar</button>
       </form>
-      <p>Não tem uma conta? <button onclick="toggleScreen()">Cadastrar</button></p>
+      <p>Primeira vez aqui? <button onclick="alternarPainel()">Cadastre-se</button></p>
     </div>
 
-    <div class="box register-box">
-      <h2>Crie sua conta</h2>
-      <p>Preencha os dados abaixo para se cadastrar</p>
-      <form>
-        <div class="input-group">
+    <div class="painel painel-registro">
+      <h2>Crie uma nova conta</h2>
+      <p>Preencha os campos para começar</p>
+      <form id="form-registro">
+        <div class="campo">
           <i class="fas fa-envelope"></i>
-          <input type="email" placeholder="E-mail" required />
+          <input type="text" name="email" placeholder="E-mail" required />
         </div>
-        <div class="input-group">
+        <div class="campo">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Senha" required />
+          <input type="password" name="senha" placeholder="Senha" required />
         </div>
-        <div class="input-group">
+        <div class="campo">
           <i class="fas fa-lock"></i>
-          <input type="password" placeholder="Confirmar senha" required />
+          <input type="password" name="confirmarSenha" placeholder="Confirmar senha" required />
         </div>
-        <button type="submit">Cadastrar</button>
+        <button type="submit">Registrar</button>
       </form>
-      <p>Já tem uma conta? <button onclick="toggleScreen()">Entrar</button></p>
+      <p>Já possui uma conta? <button onclick="alternarPainel()">Entrar</button></p>
     </div>
   </div>
 
   <script>
-    function toggleScreen() {
-      const loginBox = document.querySelector('.login-box');
-      const registerBox = document.querySelector('.register-box');
+    function alternarPainel() {
+      const login = document.querySelector('.painel-login');
+      const registro = document.querySelector('.painel-registro');
 
-      if (loginBox.classList.contains('active')) {
-        loginBox.classList.remove('active');
-        setTimeout(() => {
-          registerBox.classList.add('active');
-        }, 500);
+      if (login.classList.contains('visivel')) {
+        login.classList.remove('visivel');
+        setTimeout(() => registro.classList.add('visivel'), 400);
       } else {
-        registerBox.classList.remove('active');
-        setTimeout(() => {
-          loginBox.classList.add('active');
-        }, 500);
+        registro.classList.remove('visivel');
+        setTimeout(() => login.classList.add('visivel'), 400);
       }
     }
   </script>
