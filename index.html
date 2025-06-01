@@ -20,12 +20,32 @@
         </div>
         <div class="campo">
           <i class="fas fa-lock"></i>
-          <input type="password" name="senha" placeholder="Senha" required />
+          <input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            required
+          />
+        </div>
+        <div
+          id="mensagem-senha-login"
+          style="display:none; font-size: 12px; color: #666; margin: 5px 0 10px 30px;"
+        >
+          <ul id="mensagem-login">
+            <li class="liLogin">A senha deve conter pelo menos:</li>
+            <li class="liLogin">1 letra maiúscula</li>
+            <li class="liLogin">1 número</li>
+            <li class="liLogin">1 caractere especial</li>
+            <li class="liLogin">Ter no mínimo 6 dígitos.</li>
+          </ul>
         </div>
         <a href="#">Esqueceu sua senha?</a>
         <button type="submit">Acessar</button>
       </form>
-      <p>Primeira vez aqui? <button onclick="alternarPainel()">Cadastre-se</button></p>
+      <p>
+        Primeira vez aqui?
+        <button onclick="alternarPainel()">Cadastre-se</button>
+      </p>
     </div>
 
     <div class="painel painel-registro">
@@ -38,29 +58,68 @@
         </div>
         <div class="campo">
           <i class="fas fa-lock"></i>
-          <input type="password" name="senha" placeholder="Senha" required />
+          <input
+            type="password"
+            name="senha"
+            placeholder="Senha"
+            required
+            onfocus="mostrarMensagemSenha()"
+            onblur="ocultarMensagemSenha()"
+          />
+        </div>
+        <div
+          id="mensagem-senha-registro"
+          style="display:none; font-size: 12px; color: #666; margin: 5px 0 10px 30px;"
+        >
+          <ul id="mensagem-registro">
+            <li class="liRegistro">A senha deve conter pelo menos:</li>
+            <li class="liRegistro">1 letra maiúscula</li>
+            <li class="liRegistro">1 número</li>
+            <li class="liRegistro">1 caractere especial</li>
+            <li class="liRegistro">Ter no mínimo 6 dígitos.</li>
+          </ul>
         </div>
         <div class="campo">
           <i class="fas fa-lock"></i>
-          <input type="password" name="confirmarSenha" placeholder="Confirmar senha" required />
+          <input
+            type="password"
+            name="confirmarSenha"
+            placeholder="Confirmar senha"
+            required
+          />
         </div>
         <button type="submit">Registrar</button>
       </form>
-      <p>Já possui uma conta? <button onclick="alternarPainel()">Entrar</button></p>
+      <p>
+        Já possui uma conta?
+        <button onclick="alternarPainel()">Entrar</button>
+      </p>
     </div>
   </div>
 
   <script>
-    function alternarPainel() {
-      const login = document.querySelector('.painel-login');
-      const registro = document.querySelector('.painel-registro');
+    function mostrarMensagemSenha() {
+      const visivel = document.querySelector(".visivel");
+      const msg = visivel.querySelector('[id^="mensagem-senha"]');
+      if (msg) msg.style.display = "block";
+    }
 
-      if (login.classList.contains('visivel')) {
-        login.classList.remove('visivel');
-        setTimeout(() => registro.classList.add('visivel'), 400);
+    function ocultarMensagemSenha() {
+      const visivel = document.querySelector(".visivel");
+      const msg = visivel.querySelector('[id^="mensagem-senha"]');
+      if (msg) msg.style.display = "none";
+    }
+
+    function alternarPainel() {
+      const login = document.querySelector(".painel-login");
+      const registro = document.querySelector(".painel-registro");
+
+      if (login.classList.contains("visivel")) {
+        login.classList.remove("visivel");
+        setTimeout(() => registro.classList.add("visivel"), 400);
       } else {
-        registro.classList.remove('visivel');
-        setTimeout(() => login.classList.add('visivel'), 400);
+        registro.classList.remove("visivel");
+        setTimeout(() => login.classList.add("visivel"), 400);
       }
     }
   </script>

@@ -78,7 +78,7 @@ p {
 
 .campo input {
   width: 100%;
-  padding: 12px 12px 12px 38px;
+  padding: 12px 38px 12px 38px;
   border-radius: 22px;
   border: 2px solid #ddd;
   outline: none;
@@ -87,6 +87,23 @@ p {
 
 .campo input:focus {
   border-color: #8e2de2;
+}
+
+.toggle-senha {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #4a00e0;
+  font-size: 1.1rem;
+  padding: 0;
+}
+
+.toggle-senha:focus {
+  outline: none;
 }
 
 a {
@@ -131,4 +148,18 @@ button:hover {
 
 .painel p button:hover {
   color: #4a00e0;
+}
+
+#mensagem-login,
+#mensagem-registro {
+  font-size: 12px;
+  color: #666;
+  margin: 5px 0 10px 30px;
+  padding-left: 0;
+}
+
+.liLogin,
+.liRegistro {
+  margin-bottom: 4px;
+  line-height: 1.4;
 }

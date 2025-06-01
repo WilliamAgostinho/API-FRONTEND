@@ -76,8 +76,6 @@ document.getElementById('form-registro').addEventListener('submit', async (e) =>
       } catch {
         alert('Cadastro bem-sucedido!');
       }
-
-      window.location.href = 'welcome.html';
     } else {
       try {
         const errorData = JSON.parse(responseText);
